@@ -1,0 +1,34 @@
+﻿@model IDGS901_tema1.Models.DistanciaDosPuntos
+
+@{
+    ViewBag.Title = "Calculadora de Distancia Entre Dos Puntos";
+}
+
+<h2>Calculadora de Distancia Entre Dos Puntos</h2>
+
+@using (Html.BeginForm("Calcular", "Distancia", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Punto1X)
+        @Html.TextBoxFor(model => model.Punto1X, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Punto1Y)
+        @Html.TextBoxFor(model => model.Punto1Y, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Punto2X)
+        @Html.TextBoxFor(model => model.Punto2X, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Punto2Y)
+        @Html.TextBoxFor(model => model.Punto2Y, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Calcular</button>
+}
