@@ -1,0 +1,95 @@
+﻿@model IDGS901_tema1.Models.TrianguloModel
+
+@{
+    ViewBag.Title = "Verificar Triángulo";
+}
+
+<h2>Verificar Triángulo</h2>
+
+@using (Html.BeginForm("Verificar", "Triangulo", FormMethod.Post))
+{
+    <div class="form-horizontal">
+        <h4>Punto A</h4>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PuntoA.X, "Coordenada X:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PuntoA.X, new { htmlAttributes = new { @class = "form-control", @type = "number", step = "any" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PuntoA.Y, "Coordenada Y:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PuntoA.Y, new { htmlAttributes = new { @class = "form-control", @type = "number", step = "any" } })
+            </div>
+        </div>
+
+        <h4>Punto B</h4>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PuntoB.X, "Coordenada X:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PuntoB.X, new { htmlAttributes = new { @class = "form-control", @type = "number", step = "any" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PuntoB.Y, "Coordenada Y:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PuntoB.Y, new { htmlAttributes = new { @class = "form-control", @type = "number", step = "any" } })
+            </div>
+        </div>
+
+        <h4>Punto C</h4>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PuntoC.X, "Coordenada X:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PuntoC.X, new { htmlAttributes = new { @class = "form-control", @type = "number", step = "any" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PuntoC.Y, "Coordenada Y:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PuntoC.Y, new { htmlAttributes = new { @class = "form-control", @type = "number", step = "any" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Verificar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model != null && Model.EsTriangulo)
+{
+    <h4>El conjunto de puntos forma un triángulo.</h4>
+    <p>Tipo de triángulo: @Model.TipoTriangulo</p>
+    <p>Área: @Model.Area unidades cuadradas</p>
+    <p>Lado AB: @Model.ladoAB </p>
+    <p>Lado BC:  @Model.ladoBC</p>
+    <p>Lado CA: @Model.ladoCA </p>
+    }
+else
+{
+    <h4>El conjunto de puntos no forma un triángulo.</h4>
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Validaciones del lado del cliente
+    $(document).ready(function () {
+        $('form').submit(function (e) {
+            var puntoAX = parseFloat($('#PuntoA_X').val());
+            var puntoAY = parseFloat($('#PuntoA_Y').val());
+            var puntoBX = parseFloat($('#PuntoB_X').val());
+            var puntoBY = parseFloat($('#PuntoB_Y').val());
+            var puntoCX = parseFloat($('#PuntoC_X').val());
+            var puntoCY = parseFloat($('#PuntoC_Y').val());
+
+            if (isNaN(puntoAX) || isNaN(puntoAY) || isNaN(puntoBX) || isNaN(puntoBY) || isNaN(puntoCX) || isNaN(puntoCY)) {
+                alert('Por favor, ingrese solo valores numéricos para las coordenadas.');
+                e.preventDefault();
+            }
+        });
+    });
+</script>
+

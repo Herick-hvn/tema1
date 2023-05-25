@@ -1,0 +1,49 @@
+﻿@model IDGS901_tema1.Models.TemperaturaModel
+
+@{ ViewBag.Title = "Temperatura"; }
+
+<h2>Temperatura</h2>
+
+@using (Html.BeginForm("Calcular", "Temperatura", FormMethod.Post))
+{
+@Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>TemperaturaModel</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Temperatura, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Temperatura, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Temperatura, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Escala, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <label class="radio-inline">
+                                @Html.RadioButtonFor(model => model.Escala, "Fahrenheit", new { @class = "form-control" })
+                                Fahrenheit
+                            </label>
+                            <label class="radio-inline">
+                                @Html.RadioButtonFor(model => model.Escala, "Celsius", new { @class = "form-control" })
+                                Celsius
+                            </label>
+                            @Html.ValidationMessageFor(model => model.Escala, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-offset col-md-10">
+                            <input type="submit" value="Calcular" class="btn btn-info" />
+
+                        </div>
+                    </div>
+                </div>}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

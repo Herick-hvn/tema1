@@ -1,0 +1,71 @@
+﻿@model IDGS901_tema1.Models.TraductorModel.PalabraTraducida
+
+<h2>Crear Traducción</h2>
+
+@using (Html.BeginForm("Guardar", "Traductor", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Ingresar Palabra</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PalabraIngles, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PalabraIngles, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PalabraIngles, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PalabraEspanol, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PalabraEspanol, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PalabraEspanol, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <button id="mostrarTablaBtn" class="btn btn-default">Mostrar Traducciones</button>
+</div>
+
+<div id="tablaTraducciones" style="display: none;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Palabra en Inglés</th>
+                <th>Palabra en Español</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var traduccion in ViewBag.Traducciones)
+            {
+                string[] palabras = traduccion.Split(',');
+                <tr>
+                    <td>@palabras[0]</td>
+                    <td>@palabras[1]</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#mostrarTablaBtn").click(function () {
+            $("#tablaTraducciones").toggle();
+        });
+    });
+</script>

@@ -1,0 +1,18 @@
+﻿@model IDGS901_tema1.Models.TemperaturaModel
+
+@{ ViewBag.Title = "Resultado"; }
+
+<h2>Resultado</h2>
+
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Resultado, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Resultado, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

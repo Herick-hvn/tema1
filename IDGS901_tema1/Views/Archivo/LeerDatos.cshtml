@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "LeerDatos";
+    int cont = 0;
+}
+
+<h2>LeerDatos</h2>
+
+@foreach (string item in ViewBag.Archivos)
+{
+    <li>
+        <h3>Usuario: @(cont++)</h3>
+
+        <ul>
+            @foreach (string maestro in item.Split(','))
+            {
+                <li>@maestro</li>
+            }
+        </ul>
+    </li>
+}
+
+Vamos a crear 2 vista en la primera se pide al usuario una palabra en ingles con y su vez su significado en español luego al dar guardar
+se guarda en un archivo en en la ruta HttpContext.Current.Server.MapPath("~/App_Data/Traductor.txt"); y luego en esa misma vusta hay un boton el cual
+al dar mostrar pinta en la misma vista las palabras que estan en el archivo txt llamado Traductor luego en la misma vista hay otro boton 
+el cual te lleva a otra vista donde te pide una palabra luego en un radiobutton te pide si esa palabra esta en ingles o español luego
+en un botn traducir se muestra en la misma vista la palabra traducida cabe recalcacar que las palabras deben ser sensibles a mayusculas y minusculas es en mvc con asp.net

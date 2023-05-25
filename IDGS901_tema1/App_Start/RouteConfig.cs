@@ -16,7 +16,7 @@ namespace IDGS901_tema1
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Distancia", action = "DistanciaDosPuntos", id = UrlParameter.Optional }
+                defaults: new { controller = "Nuevo", action = "calculos", id = UrlParameter.Optional }
             );
         }
     }
